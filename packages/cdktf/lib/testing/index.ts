@@ -13,6 +13,7 @@ import { invokeAspects } from "../synthesize/synthesizer";
 import {
   getToHaveResourceWithProperties,
   getToHaveDataSourceWithProperties,
+  getToHaveProviderWithProperties,
   toBeValidTerraform,
 } from "./matchers";
 
@@ -215,6 +216,29 @@ export class Testing {
     resourceType: string
   ): boolean {
     return getToHaveResourceWithProperties()(
+      received,
+      { tfResourceType: resourceType },
+      {}
+    ).pass;
+  }
+
+  public static toHaveProviderWithProperties(
+    received: string,
+    resourceType: string,
+    properties: Record<string, any> = {}
+  ): boolean {
+    return getToHaveProviderWithProperties()(
+      received,
+      { tfResourceType: resourceType },
+      properties
+    ).pass;
+  }
+
+  public static toHaveProvider(
+    received: string,
+    resourceType: string
+  ): boolean {
+    return getToHaveProviderWithProperties()(
       received,
       { tfResourceType: resourceType },
       {}
