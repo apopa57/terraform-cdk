@@ -212,6 +212,7 @@ export function getToHaveResourceWithProperties(
   };
 }
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 export function getToHaveProviderWithProperties(
   customPassEvaluation?: (
     items: any,
