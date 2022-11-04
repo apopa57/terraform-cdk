@@ -2,10 +2,10 @@ import path from "path";
 import * as fs from "fs-extra";
 import os from "os";
 import { CdktfProject, init, Language, get } from "../../lib/index";
-import { exec } from "cdktf-cli/src/lib/util";
+import { exec } from "../../lib/util";
 
-jest.mock("cdktf-cli/src/lib/util", () => {
-  const originalModule = jest.requireActual("cdktf-cli/src/lib/util");
+jest.mock("../../lib/util", () => {
+  const originalModule = jest.requireActual("../../lib/util");
 
   return {
     __esmodule: true,

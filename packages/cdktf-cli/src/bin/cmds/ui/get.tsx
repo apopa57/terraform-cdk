@@ -3,8 +3,7 @@ import React, { Fragment } from "react";
 import { Text, Box, useApp, Newline } from "ink";
 import Spinner from "ink-spinner";
 import { Language, GetOptions, config } from "@cdktf/provider-generator";
-import { sendTelemetry } from "../../../lib/checkpoint";
-import { get, GetStatus as Status } from "../../../lib";
+import { sendTelemetry, get, GetStatus as Status } from "@cdktf/cli";
 
 interface GetConfig {
   codeMakerOutput: string;

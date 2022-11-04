@@ -3,7 +3,7 @@
 import yargs from "yargs";
 import { LANGUAGES, config as cfg } from "@cdktf/provider-generator";
 import { requireHandlers } from "./helper/utilities";
-import { Errors } from "../../lib/errors";
+import { Errors } from "@cdktf/cli";
 import { BaseCommand } from "./helper/base-command";
 const config = cfg.readConfigSync();
 

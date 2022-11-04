@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: MPL-2.0
 import * as fs from "fs";
 import { Language } from "@cdktf/provider-generator";
-import { findFileAboveCwd } from "../bin/cmds/helper/utilities";
 import { Errors } from "./errors";
 import path from "path";
 import { logger } from "./logging";
@@ -14,6 +13,23 @@ export type ProviderDependencySpec = {
   version?: string;
   namespace?: string;
 };
+
+function findFileAboveCwd(
+  file: string,
+  rootPath = process.cwd()
+): string | null {
+  const fullPath = path.resolve(rootPath, file);
+  if (fs.existsSync(fullPath)) {
+    return fullPath;
+  }
+
+  const parentDir = path.resolve(rootPath, "..");
+  if (fs.existsSync(parentDir) && parentDir !== rootPath) {
+    return findFileAboveCwd(file, parentDir);
+  }
+
+  return null;
+}
 
 // TODO: move this to some common package from where it is used by @cdktf/provider-generator, cdktf, and cdktf-cli
 // (might end up in cdktf)

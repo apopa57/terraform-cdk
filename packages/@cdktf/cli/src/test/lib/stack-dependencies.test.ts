@@ -1,7 +1,6 @@
 // Copyright (c) HashiCorp, Inc
 // SPDX-License-Identifier: MPL-2.0
-import { StackDependencies } from "../../bin/cmds/helper/stack-dependencies";
-import { SynthesizedStack } from "../../lib/synth-stack";
+import { StackDependencies, SynthesizedStack } from "../../lib/synth-stack";
 
 function createStack(
   name: string,

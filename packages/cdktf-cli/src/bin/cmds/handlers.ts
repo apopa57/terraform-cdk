@@ -28,27 +28,28 @@ import { List } from "./ui/list";
 import { Synth } from "./ui/synth";
 import { Watch } from "./ui/watch";
 
-import { sendTelemetry } from "../../lib/checkpoint";
-import { Errors, IsErrorType } from "../../lib/errors";
-import { Output } from "./ui/output";
 import {
+  sendTelemetry,
+  Errors,
+  IsErrorType,
   NestedTerraformOutputs,
   saveOutputs,
   normalizeOutputPath,
-} from "../../lib/output";
+  collectDebugInformation,
+  getPackageVersion,
+  initializErrorReporting,
+  DependencyManager,
+  ProviderConstraint,
+  CdktfConfig,
+  ProviderDependencySpec,
+  logger,
+} from "@cdktf/cli";
+import { Output } from "./ui/output";
 import { throwIfNotProjectDirectory } from "./helper/check-directory";
 import {
   checkEnvironment,
   verifySimilarLibraryVersion,
 } from "./helper/check-environment";
-import { collectDebugInformation, getPackageVersion } from "../../lib/debug";
-import { initializErrorReporting } from "../../lib/error-reporting";
-import {
-  DependencyManager,
-  ProviderConstraint,
-} from "../../lib/dependencies/dependency-manager";
-import { CdktfConfig, ProviderDependencySpec } from "../../lib/cdktf-config";
-import { logger } from "../../lib/logging";
 
 const chalkColour = new chalk.Instance();
 const config = cfg.readConfigSync();

@@ -2,12 +2,20 @@
 // SPDX-License-Identifier: MPL-2.0
 import * as path from "path";
 import * as fs from "fs-extra";
-import { readPackageJson } from "../bin/cmds/helper/utilities";
+import * as pkgUp from "pkg-up";
 import { Errors } from "./errors";
 
 import { sscaff } from "sscaff";
 import { FUTURE_FLAGS } from "cdktf/lib/features";
 
+const readPackageJson = () => {
+  const pkgPath = pkgUp.sync({ cwd: __dirname });
+  if (!pkgPath) {
+    throw new Error("unable to find package.json");
+  }
+
+  return JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
+};
 const pkg = readPackageJson();
 const constructsVersion = pkg.dependencies.constructs;
 

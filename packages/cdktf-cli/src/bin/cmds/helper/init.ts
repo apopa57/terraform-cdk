@@ -11,9 +11,18 @@ import * as path from "path";
 
 import * as terraformCloudClient from "../helper/terraform-cloud-client";
 
-import { downloadFile, HttpError } from "../../../lib/util";
-import { logFileName, logger } from "../../../lib/logging";
-import { Errors } from "../../../lib/errors";
+import {
+  downloadFile,
+  HttpError,
+  logFileName,
+  logger,
+  Errors,
+  sendTelemetry,
+  init,
+  Project,
+  askForCrashReportingConsent,
+  CdktfConfig,
+} from "@cdktf/cli";
 import {
   convertProject,
   getTerraformConfigFromDir,
@@ -21,7 +30,6 @@ import {
 } from "@cdktf/hcl2cdk";
 import { isLocalModule } from "@cdktf/provider-generator";
 import { execSync } from "child_process";
-import { sendTelemetry } from "../../../lib/checkpoint";
 import { v4 as uuid } from "uuid";
 import {
   readSchema,
@@ -30,13 +38,10 @@ import {
   config,
 } from "@cdktf/provider-generator";
 import { templates, templatesDir } from "./init-templates";
-import { init, Project } from "../../../lib";
-import { askForCrashReportingConsent } from "../../../lib/error-reporting";
 import ciDetect from "@npmcli/ci-detect";
 import { isInteractiveTerminal } from "./check-environment";
 import { getTerraformVersion } from "./terraform-check";
 import * as semver from "semver";
-import { CdktfConfig } from "../../../lib/cdktf-config";
 
 const chalkColour = new chalk.Instance();
 

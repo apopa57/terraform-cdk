@@ -8,7 +8,7 @@ import * as path from "path";
 import * as os from "os";
 import * as semver from "semver";
 import { promisify } from "util";
-import { DISPLAY_VERSION } from "../../../lib/version";
+import { DISPLAY_VERSION } from "@cdktf/cli";
 
 const ONE_DAY_IN_SECONDS = 1 * 24 * 60 * 60;
 

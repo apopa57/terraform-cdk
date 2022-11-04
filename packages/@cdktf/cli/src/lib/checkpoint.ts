@@ -9,12 +9,20 @@ import { logger, processLoggerError } from "./logging";
 import * as path from "path";
 import * as fs from "fs-extra";
 import { DISPLAY_VERSION } from "./version";
-import { homeDir } from "../bin/cmds/helper/version-check";
 import { CHECKPOINT_DISABLE } from "./environment";
 
 const BASE_URL = `https://checkpoint-api.hashicorp.com/v1/`;
 
 const VALID_STATUS_CODES = [200, 201];
+
+function homeDir() {
+  return process.env.CDKTF_HOME
+    ? path.resolve(process.env.CDKTF_HOME)
+    : path.join(
+        (os.userInfo().homedir ?? os.homedir()).trim() || "/",
+        ".cdktf"
+      );
+}
 
 export interface ReportParams {
   dateTime?: Date;

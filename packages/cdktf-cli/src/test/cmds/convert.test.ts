@@ -3,7 +3,7 @@
 import execa from "execa";
 import path from "path";
 import { promises as fs } from "fs";
-import { mkdtemp } from "../../lib/util";
+import { mkdtemp } from "@cdktf/cli";
 
 const cdktfBin = path.resolve(__dirname, "../../../bundle/bin/cdktf");
 const input = `
