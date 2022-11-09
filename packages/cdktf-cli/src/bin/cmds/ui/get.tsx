@@ -11,6 +11,7 @@ interface GetConfig {
   language: Language;
   constraints: config.TerraformDependencyConstraint[];
   parallelism: number;
+  clean?: boolean;
 }
 
 export const Get = ({
@@ -18,6 +19,7 @@ export const Get = ({
   language,
   constraints,
   parallelism,
+  clean,
 }: GetConfig): React.ReactElement => {
   const [currentStatus, setCurrentStatus] = React.useState<Status>(
     Status.STARTING
@@ -36,6 +38,7 @@ export const Get = ({
         await get({
           constraints,
           constructsOptions,
+          clean,
           onUpdate: setCurrentStatus,
           reportTelemetry: (payload: {
             targetLanguage: string;

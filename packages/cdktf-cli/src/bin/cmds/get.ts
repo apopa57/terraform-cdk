@@ -29,6 +29,11 @@ class Command extends BaseCommand {
         alias: "l",
         choices: LANGUAGES,
       })
+      .option("clean", {
+        default: false,
+        type: "boolean",
+        desc: "Remove all existing generated constructs",
+      })
       .option("parallelism", {
         type: "number",
         required: false,

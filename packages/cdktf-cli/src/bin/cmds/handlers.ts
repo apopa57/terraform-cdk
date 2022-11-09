@@ -198,6 +198,7 @@ export async function get(argv: {
   output: string;
   language: Language;
   parallelism: number;
+  clean?: boolean;
 }) {
   throwIfNotProjectDirectory();
   await displayVersionMessage();
@@ -207,7 +208,7 @@ export async function get(argv: {
   const config = cfg.readConfigSync(); // read config again to be up-to-date (if called via 'add' command)
   const providers = config.terraformProviders ?? [];
   const modules = config.terraformModules ?? [];
-  const { output, language, parallelism } = argv;
+  const { output, language, parallelism, clean } = argv;
 
   const constraints: cfg.TerraformDependencyConstraint[] = [
     ...providers,
@@ -227,6 +228,7 @@ export async function get(argv: {
       language: language,
       constraints,
       parallelism,
+      clean,
     })
   );
 }
